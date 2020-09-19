@@ -1,5 +1,3 @@
-//sets jquery vars
-
 //sets date and formats it for me already
 var date = moment().format("MMM Do YY");
 $("#currentDay").text(window.date);
@@ -12,37 +10,57 @@ console.log(time)
 //changes coloir depending on time
 
 var hour= ["9","10","11","12","13","14","15","16","17"]
-
 function timecheck(){
     for(var i= 0; i<hour.length; i++){
-        parseInt(hour[i]);
-        if (time<hour[i]){
-            $("#hour-"+hour[i]).removeClass("past");
-            $("#hour-"+hour[i]).removeClass("present");
-            $("#hour-"+hour[i]).addClass("future");
+        time=parseInt(time)
+        x=parseInt(hour[i]);
+        var id = "hour-"+x
+
+        console.log(id)
+        var hi=localStorage.getItem(id)
+        console.log(hi)
+        if (time<x){
+            $("#"+id).removeClass("past");
+            $("#"+id).removeClass("present");
+            $("#"+id).addClass("future");
+            $("#"+id).children(".description").val(hi)
         }
-        if (time>hour[i]){
-            $("#hour-"+hour[i]).addClass("past");
-            $("#hour-"+hour[i]).removeClass("present");
-            $("#hour-"+hour[i]).removeClass("future");
+        else if (time>x){
+            $("#"+id).addClass("past");
+            $("#"+id).removeClass("present");
+            $("#"+id).removeClass("future");
+            $("#"+id).children(".description").val(hi)
         }
-        if (time===hour[i]){
-            $("#hour-"+hour[i]).removeClass("past");
-            $("#hour-"+hour[i]).addClass("present");
-            $("#hour-"+hour[i]).removeClass("future");
+        else if (time===x){
+            $("#"+id).removeClass("past");
+            $("#"+id).addClass("present");
+            $("#"+id).removeClass("future");
+            $("#"+id).children(".description").val(hi)
         }
     }
 }
+
 timecheck()
 setInterval(function (){
     timecheck()
 },1000*60);
 // save local storage from text area
 $(".saveBtn").on("click",function(){
-    console.log("hi")
-    console.log($(this).siblings(".description").val())
-
+    console.log("hi");
+    var todo = $(this).siblings(".description").val();
+    console.log(todo);
+    var id=($(this).parent(".row").attr("id"))
+    localStorage.setItem(id,todo)
+    console.log()
+    var hi=localStorage.getItem(id)
+        console.log(hi)
+    console.log(localStorage.getItem("hour-17"))
 })
+var hi =localStorage
+console.log(hi)
+
+
+
 
 
 
