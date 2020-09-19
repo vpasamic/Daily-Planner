@@ -1,14 +1,13 @@
 //sets date and formats it for me already
-var date = moment().format("MMM Do YY");
-$("#currentDay").text(window.date);
-console.log(date)
+var date = moment().format("MMM Do, YYYY H:mm");
+$("#currentDay").text(date);
+
 
 //sets current variable time
 var time= moment().format("H");
-console.log(time)
 
-//changes coloir depending on time
 
+//changes color depending on time
 var hour= ["9","10","11","12","13","14","15","16","17"]
 function timecheck(){
     for(var i= 0; i<hour.length; i++){
@@ -34,12 +33,13 @@ function timecheck(){
         }
     }
 }
-
+//changes display to what is saved in localStorage
 for(var i= 0; i<hour.length; i++){
     var x=parseInt(hour[i])
     var id = "hour-"+x
     var hi=localStorage.getItem(id)
     $("#"+id).children(".description").val(hi)
+    $("#currentDay").text(window.date)
 }
 
 timecheck()
