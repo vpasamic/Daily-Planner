@@ -1,5 +1,5 @@
 //uses moment function to get time and date formatted
-var date = moment().format("MMM Do, YYYY H:mm")
+var date = moment().format("MMM Do, YYYY H:mm:ss")
 
 //sets current variable time
 var time= moment().format("H");
@@ -44,9 +44,9 @@ timecheck()
 setInterval(function (){
     timecheck()
     //updates date and time header
-    date = moment().format("MMM Do, YYYY H:mm")
+    date = moment().format("MMM Do, YYYY H:mm:ss")
     $("#currentDay").text(date);
-},1000*60);
+},1000);
 
 // save local storage from text area
 $(".saveBtn").on("click",function(){
