@@ -1,11 +1,8 @@
-//sets date and formats it for me already
-var date = moment().format("MMM Do, YYYY H:mm");
-$("#currentDay").text(date);
-
+//uses moment function to get time and date formatted
+var date = moment().format("MMM Do, YYYY H:mm")
 
 //sets current variable time
 var time= moment().format("H");
-
 
 //changes color depending on time
 var hour= ["9","10","11","12","13","14","15","16","17"]
@@ -43,8 +40,12 @@ for(var i= 0; i<hour.length; i++){
 }
 
 timecheck()
+//updates the page every minute
 setInterval(function (){
     timecheck()
+    //updates date and time header
+    date = moment().format("MMM Do, YYYY H:mm")
+    $("#currentDay").text(date);
 },1000*60);
 
 // save local storage from text area
